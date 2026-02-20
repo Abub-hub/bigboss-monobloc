@@ -1,0 +1,21 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+
+<h2>Connexion entreprise</h2>
+
+<form method="POST" action="/login" class="card">
+
+<label>SIRET</label>
+<input type="text" name="siret" required>
+
+<label>Mot de passe</label>
+<input type="password" name="password" required>
+
+<button type="submit">Se connecter</button>
+
+<p>Pas de compte ? <a href="/register">Créer un compte</a></p>
+
+</form>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+
+<h2>Assigner ordinateur</h2>
+
+<form method="POST" action="/computer/assign/{{ computer.id }}" class="card">
+
+<label>Choisir un employé</label>
+
+<select name="employeeId">
+<option value="">Aucun (libre)</option>
+
+{% for e in employees %}
+<option value="{{ e.id }}">{{ e.firstName }} {{ e.lastName }}</option>
+{% endfor %}
+
+</select>
+
+<button>Enregistrer</button>
+
+</form>
+
+{% endblock %}

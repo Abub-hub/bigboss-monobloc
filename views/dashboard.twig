@@ -1,0 +1,109 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+
+<h2>Tableau de bord</h2>
+
+<div class="stats">
+    <div class="card">🧑  -  Employés: {{ company.employees | length }}</div>
+    <div class="card">💻  -  Ordinateurs: {{ company.computers | length }}</div>
+</div>
+
+<h3>Ajouter un employé</h3>
+
+<form method="POST" action="/employee/add" class="card">
+<input name="firstName" placeholder="Prénom" required>
+<input name="lastName" placeholder="Nom" required>
+<input name="email" placeholder="Email" required>
+<input type="password" name="password" placeholder="Mot de passe" required>
+<input name="age" placeholder="Age">
+
+<select name="gender">
+<option value="">Genre</option>
+<option value="Male">Homme</option>
+<option value="Female">Femme</option>
+</select>
+
+<button class="btn-add">Ajouter</button>
+</form>
+
+<h3>Ajouter un ordinateur</h3>
+
+<form method="POST" action="/computer/add" class="card">
+<input name="mac" placeholder="Adresse MAC" required>
+<button class="btn-add">Ajouter</button>
+</form>
+
+<h3>Liste des employés</h3>
+
+<table>
+<tr class="table-header" >
+<th>Nom</th>
+<th>Email</th>
+<th>Age</th>
+<th>Genre</th>
+<th>Actions</th>
+</tr>
+
+{% for e in company.employees %}
+<tr>
+<td>{{ e.firstName }} {{ e.lastName }}</td>
+<td>{{ e.email }}</td>
+<td>{{ e.age }}</td>
+<td>{{ e.gender }}</td>
+<td>
+
+<form action="/employee/edit/{{ e.id }}" method="GET" style="display:inline;">
+<button class="btn-edit">Modifier</button>
+</form>
+
+<form action="/employee/delete/{{ e.id }}" method="GET" style="display:inline;">
+<button class="btn-delete">Supprimer</button>
+</form>
+
+</td>
+</tr>
+{% endfor %}
+
+</table>
+
+<h3>Liste des ordinateurs</h3>
+
+<table>
+<tr class="table-header">
+<th>MAC</th>
+<th>Assigné à</th>
+<th>Actions</th>
+</tr>
+
+{% for c in company.computers %}
+<tr>
+<td>{{ c.mac }}</td>
+<td>
+{% if c.employee %}
+{{ c.employee.firstName }} {{ c.employee.lastName }}
+{% else %}
+Libre
+{% endif %}
+</td>
+<td>
+
+<form action="/computer/edit/{{ c.id }}" method="GET" style="display:inline;">
+<button class="btn-edit">Modifier</button>
+</form>
+
+<form action="/computer/delete/{{ c.id }}" method="GET" style="display:inline;">
+<button class="btn-delete">Supprimer</button>
+</form>
+
+<form action="/computer/assign/{{ c.id }}" method="GET" style="display:inline;">
+<button class="btn-assign">Assigner</button>
+</form>
+
+</td>
+</tr>
+{% endfor %}
+
+</table>
+
+{% endblock %}

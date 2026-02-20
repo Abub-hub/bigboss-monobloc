@@ -1,0 +1,25 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+
+<h2>Créer un compte entreprise</h2>
+
+<form method="POST" action="/register" class="card">
+
+<label>Raison sociale</label>
+<input type="text" name="name" required>
+
+<label>SIRET</label>
+<input type="text" name="siret" required>
+
+<label>Mot de passe</label>
+<input type="password" name="password" required>
+
+<label>Nom du directeur (optionnel)</label>
+<input type="text" name="director">
+
+<button type="submit">Créer le compte</button>
+
+</form>
+
+{% endblock %}

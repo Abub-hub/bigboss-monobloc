@@ -1,0 +1,16 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+
+<h2>Modifier ordinateur</h2>
+
+<form method="POST" action="/computer/edit/{{ computer.id }}" class="card">
+
+<label>Adresse MAC</label>
+<input name="mac" value="{{ computer.mac }}" required>
+
+<button>Mettre à jour</button>
+
+</form>
+
+{% endblock %}

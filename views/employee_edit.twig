@@ -1,0 +1,35 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+
+<h2>Modifier employé</h2>
+
+<form method="POST" action="/employee/edit/{{ employee.id }}" class="card">
+
+<label>Prénom</label>
+<input name="firstName" value="{{ employee.firstName }}" required>
+
+<label>Nom</label>
+<input name="lastName" value="{{ employee.lastName }}" required>
+
+<label>Email</label>
+<input name="email" value="{{ employee.email }}" required>
+
+<label>Age</label>
+<input name="age" value="{{ employee.age }}">
+
+<label>Genre</label>
+<select name="gender">
+<option value="">Choisir</option>
+<option value="Male" {% if employee.gender == "Male" %}selected{% endif %}>Homme</option>
+<option value="Female" {% if employee.gender == "Female" %}selected{% endif %}>Femme</option>
+</select>
+
+<label>Nouveau mot de passe (optionnel)</label>
+<input type="password" name="password">
+
+<button>Mettre à jour</button>
+
+</form>
+
+{% endblock %}
