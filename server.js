@@ -17,6 +17,11 @@ app.use(session({
   saveUninitialized: false
 }))
 
+app.use((req, res, next) => {
+  res.locals.companyId = req.session.companyId;
+  next();
+});
+
 app.set("view engine", "twig")
 
 app.get("/", (req, res) => res.redirect("/login"))
@@ -25,6 +30,7 @@ app.use(authRoute)
 app.use(employeeRoute)
 app.use(computerRoute)
 app.use(dashboardRoute)
+
 
 app.listen(3000, () => {
   console.log("🚀 http://localhost:3000")

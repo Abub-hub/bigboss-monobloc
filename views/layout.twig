@@ -9,9 +9,15 @@
 
 <nav class="navbar">
     <h1>Big Boss</h1>
+
     <div>
         <a href="/dashboard">Tableau de bord</a>
-        <a href="/logout">Déconnexion</a>
+
+        {% if companyId %}
+            <a href="/logout" class="btn-nav">Se déconnecter</a>
+        {% else %}
+            <a href="/login" class="btn-nav">Se connecter</a>
+        {% endif %}
     </div>
 </nav>
 

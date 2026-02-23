@@ -37,7 +37,10 @@ exports.login = async (req, res) => {
 
   req.session.companyId = company.id
 
-  res.redirect("/dashboard")
+
+req.session.save(() => {
+  res.redirect('/dashboard');
+});
 }
 
 exports.logout = (req, res) => {
